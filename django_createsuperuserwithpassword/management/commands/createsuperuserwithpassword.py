@@ -35,9 +35,12 @@ class Command(createsuperuser.Command):
         username_filter = {self.UserModel.USERNAME_FIELD: username}
 
         if username and options.get('preserve'):
-            exists = self._get_db_manager(database).filter(**username_filter).exists()
+            exists = (self._get_db_manager(database)
+                      .filter(**username_filter)
+                      .exists())
             if exists:
-                self.stdout.write("User exists, exiting normally due to --preserve.")
+                self.stdout.write(
+                    "User exists, exiting normally due to --preserve.")
                 return
 
         options["interactive"] = False  # To not ask for a password
