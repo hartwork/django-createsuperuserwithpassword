@@ -35,10 +35,13 @@ _description = (
     ', programatically'
 )
 
+_project_url = 'https://github.com/hartwork/django-createsuperuserwithpassword'
+
+
 if __name__ == '__main__':
     setup(
             name='django-createsuperuserwithpassword',
-            url='https://github.com/hartwork/django-createsuperuserwithpassword',
+            url=_project_url,
             description=_description,
             long_description=_description,
             license='MIT',
