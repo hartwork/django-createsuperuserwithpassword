@@ -1,6 +1,6 @@
-# Hi!
+# django-createsuperuserwithpassword
 
-**django-createsuperuserwithpassword** provides a Django management command
+… provides a Django management command
 to create ready-to-login super users during developement.
 
 To use, first
