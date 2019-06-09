@@ -7,7 +7,7 @@ from django.core.management import CommandError
 
 
 class Command(createsuperuser.Command):
-    help = 'Create a superuser and apply a password as well'
+    help = 'Create a superuser and apply a password as well.'
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
@@ -29,7 +29,7 @@ class Command(createsuperuser.Command):
         database = options.get('database')
 
         if password and not username:
-            raise CommandError("--{} is required if specifying --password"
+            raise CommandError("--{} is required if specifying --password."
                                .format(self.UserModel.USERNAME_FIELD))
 
         username_filter = {self.UserModel.USERNAME_FIELD: username}
@@ -37,7 +37,7 @@ class Command(createsuperuser.Command):
         if username and options.get('preserve'):
             exists = self._get_db_manager(database).filter(**username_filter).exists()
             if exists:
-                self.stdout.write("User exists, exiting normally due to --preserve")
+                self.stdout.write("User exists, exiting normally due to --preserve.")
                 return
 
         options["interactive"] = False  # To not ask for a password
