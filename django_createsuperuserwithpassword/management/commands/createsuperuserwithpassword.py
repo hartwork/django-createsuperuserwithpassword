@@ -6,12 +6,12 @@ from django.core.management import CommandError
 
 
 class Command(createsuperuser.Command):
-    help = 'Create a superuser, and allow password to be provided'
+    help = 'Create a superuser and apply a password as well'
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
         parser.add_argument(
-            '--password', dest='password', default=None,
+            '--password', dest='password', default=None, required=True,
             help='Specifies the password for the superuser.',
         )
         parser.add_argument(
@@ -41,7 +41,6 @@ class Command(createsuperuser.Command):
 
         super(Command, self).handle(*args, **options)
 
-        if password:
-            user = self._get_db_manager(database).get(**username_filter)
-            user.set_password(password)
-            user.save()
+        user = self._get_db_manager(database).get(**username_filter)
+        user.set_password(password)
+        user.save()
