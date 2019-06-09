@@ -32,7 +32,7 @@ _classifiers = dedent("""\
 _description = (
     'Django management command'
     ' to create usable super users'
-    ', programatically'
+    ', programmatically'
 )
 
 _project_url = 'https://github.com/hartwork/django-createsuperuserwithpassword'
