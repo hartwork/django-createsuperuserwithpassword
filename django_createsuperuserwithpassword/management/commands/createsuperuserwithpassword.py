@@ -29,7 +29,7 @@ class Command(createsuperuser.Command):
         database = options.get('database')
 
         if password and not username:
-            raise CommandError("--{} is required if specifying --password."
+            raise CommandError('--{} is required if specifying --password.'
                                .format(self.UserModel.USERNAME_FIELD))
 
         username_filter = {self.UserModel.USERNAME_FIELD: username}
@@ -40,10 +40,10 @@ class Command(createsuperuser.Command):
                       .exists())
             if exists:
                 self.stdout.write(
-                    "User exists, exiting normally due to --preserve.")
+                    'User exists, exiting normally due to --preserve.')
                 return
 
-        options["interactive"] = False  # To not ask for a password
+        options['interactive'] = False  # To not ask for a password
 
         super(Command, self).handle(*args, **options)
 
