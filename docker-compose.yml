@@ -1,0 +1,21 @@
+# Copyright (C) 2019 Sebastian Pipping <sebastian@pipping.org>
+# Licensed under the MIT License
+
+version: '3'
+
+services:
+  django:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:58000:8000"
+    entrypoint: ["/app/docker-entrypoint.sh"]
+    command: ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+    volumes:
+      - './:/app/'
+
+  postgres:
+    image: postgres
