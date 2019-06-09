@@ -1,3 +1,6 @@
+# Copyright (C) 2017 Adam Charnock <adam@adamcharnock.com>
+# Licensed under the MIT license
+
 from django.contrib.auth.management.commands import createsuperuser
 from django.core.management import CommandError
 
