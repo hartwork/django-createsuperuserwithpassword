@@ -39,6 +39,8 @@ class Command(createsuperuser.Command):
                 self.stdout.write("User exists, exiting normally due to --preserve")
                 return
 
+        options["interactive"] = False  # To not ask for a password
+
         super(Command, self).handle(*args, **options)
 
         user = self._get_db_manager(database).get(**username_filter)
