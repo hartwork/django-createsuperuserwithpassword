@@ -1,4 +1,5 @@
 # Copyright (C) 2017 Adam Charnock <adam@adamcharnock.com>
+# Copyright (C) 2019 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under the MIT license
 
 from django.contrib.auth.management.commands import createsuperuser
