@@ -21,14 +21,17 @@ class Command(createsuperuser.Command):
 
     def handle(self, *args, **options):
         password = options.get('password')
-        username = options.get('username')
+        username = options.get(self.UserModel.USERNAME_FIELD)
         database = options.get('database')
 
         if password and not username:
-            raise CommandError("--username is required if specifying --password")
+            raise CommandError("--{} is required if specifying --password"
+                               .format(self.UserModel.USERNAME_FIELD))
+
+        username_filter = {self.UserModel.USERNAME_FIELD: username}
 
         if username and options.get('preserve'):
-            exists = self.UserModel._default_manager.db_manager(database).filter(username=username).exists()
+            exists = self.UserModel._default_manager.db_manager(database).filter(**username_filter).exists()
             if exists:
                 self.stdout.write("User exists, exiting normally due to --preserve")
                 return
@@ -36,6 +39,6 @@ class Command(createsuperuser.Command):
         super(Command, self).handle(*args, **options)
 
         if password:
-            user = self.UserModel._default_manager.db_manager(database).get(username=username)
+            user = self.UserModel._default_manager.db_manager(database).get(**username_filter)
             user.set_password(password)
             user.save()
