@@ -19,6 +19,9 @@ class Command(createsuperuser.Command):
             help='Exit normally if the user already exists.',
         )
 
+    def _get_db_manager(self, database):
+        return self.UserModel._default_manager.db_manager(database)
+
     def handle(self, *args, **options):
         password = options.get('password')
         username = options.get(self.UserModel.USERNAME_FIELD)
@@ -31,7 +34,7 @@ class Command(createsuperuser.Command):
         username_filter = {self.UserModel.USERNAME_FIELD: username}
 
         if username and options.get('preserve'):
-            exists = self.UserModel._default_manager.db_manager(database).filter(**username_filter).exists()
+            exists = self._get_db_manager(database).filter(**username_filter).exists()
             if exists:
                 self.stdout.write("User exists, exiting normally due to --preserve")
                 return
@@ -39,6 +42,6 @@ class Command(createsuperuser.Command):
         super(Command, self).handle(*args, **options)
 
         if password:
-            user = self.UserModel._default_manager.db_manager(database).get(**username_filter)
+            user = self._get_db_manager(database).get(**username_filter)
             user.set_password(password)
             user.save()
