@@ -3,17 +3,33 @@
 … provides a Django management command
 to create ready-to-login super users during development.
 
-To use, first
-enable the management command by extending your Django app settings …
+
+# How to Use
+
+## 1. Install
+
+Install the pip package locally or globally:
+
+```shell
+pip install [--user] django-createsuperuserwithpassword
+```
+
+
+## 2. Activate
+
+Enable the Django management command by extending your Django project settings:
 
 ```python
 INSTALLED_APPS += ("django_createsuperuserwithpassword", )
 ```
 
-… and then call the command — e.g. from within a container entrypoint script — like this:
+
+## 3. Apply
+
+Call the command — e.g. from within a container entrypoint script — like this:
 
 ```shell
-python3 manage.py createsuperuserwithpassword \
+python manage.py createsuperuserwithpassword \
         --username admin \
         --password admin \
         --email admin@example.org \
