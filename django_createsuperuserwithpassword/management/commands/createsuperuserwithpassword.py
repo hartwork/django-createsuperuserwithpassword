@@ -4,6 +4,7 @@
 
 from django.contrib.auth.management.commands import createsuperuser
 from django.core.management import CommandError
+from django.db import transaction
 
 
 class Command(createsuperuser.Command):
@@ -45,19 +46,20 @@ class Command(createsuperuser.Command):
 
         username_filter = {self.UserModel.USERNAME_FIELD: username}
 
-        if username and options.get('preserve'):
-            exists = (self._get_db_manager(database)
-                      .filter(**username_filter)
-                      .exists())
-            if exists:
-                self.stdout.write(
-                    'User exists, exiting normally due to --preserve.')
-                return
+        with transaction.atomic():
+            if username and options.get('preserve'):
+                exists = (self._get_db_manager(database)
+                          .filter(**username_filter)
+                          .exists())
+                if exists:
+                    self.stdout.write(
+                        'User exists, exiting normally due to --preserve.')
+                    return
 
-        options['interactive'] = False  # i.e. --noinput/--no-input
+            options['interactive'] = False  # i.e. --noinput/--no-input
 
-        super(Command, self).handle(*args, **options)
+            super(Command, self).handle(*args, **options)
 
-        user = self._get_db_manager(database).get(**username_filter)
-        user.set_password(password)
-        user.save()
+            user = self._get_db_manager(database).get(**username_filter)
+            user.set_password(password)
+            user.save()
