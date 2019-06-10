@@ -10,7 +10,17 @@ class Command(createsuperuser.Command):
     help = 'Create a superuser and apply a password as well.'
 
     def add_arguments(self, parser):
+        original_add_argument = parser.add_argument
+
+        def _add_argument_except_noinput(*args, **kvargs):
+            if args and args[0] in ('--noinput', '--no-input'):
+                return
+            return original_add_argument(*args, **kvargs)
+
+        parser.add_argument = _add_argument_except_noinput
         super(Command, self).add_arguments(parser)
+        parser.add_argument = original_add_argument
+
         parser.add_argument(
             '--password', dest='password', default=None, required=True,
             help='Specifies the password for the superuser.',
@@ -43,7 +53,7 @@ class Command(createsuperuser.Command):
                     'User exists, exiting normally due to --preserve.')
                 return
 
-        options['interactive'] = False  # To not ask for a password
+        options['interactive'] = False  # i.e. --noinput/--no-input
 
         super(Command, self).handle(*args, **options)
 
