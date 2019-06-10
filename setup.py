@@ -2,6 +2,7 @@
 # Copyright (C) 2019 Sebastian Pipping <sebastian@pipping.org>
 # Licensed under the MIT license
 
+import os
 from textwrap import dedent
 
 from setuptools import find_packages, setup
@@ -38,12 +39,18 @@ _description = (
 _project_url = 'https://github.com/hartwork/django-createsuperuserwithpassword'
 
 
+def _get_long_description():
+    readme_rst = os.path.join(os.path.dirname(__file__), 'README.rst')
+    with open(readme_rst, 'r') as f:
+        return f.read()
+
+
 if __name__ == '__main__':
     setup(
             name='django-createsuperuserwithpassword',
             url=_project_url,
             description=_description,
-            long_description=_description,
+            long_description=_get_long_description(),
             license='MIT',
             version='1.0.1',
             author='Adam Charnock, Sebastian Pipping',
