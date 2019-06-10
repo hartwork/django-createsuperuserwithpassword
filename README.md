@@ -20,8 +20,15 @@ python3 manage.py createsuperuserwithpassword \
         --preserve
 ```
 
-**django-createsuperuserwithpassword** is based on code by [Adam Charnock](https://github.com/adamcharnock) that started out at [adamcharnock/swiftwind-heroku](https://github.com/adamcharnock/swiftwind-heroku/commits/master/swiftwind_heroku/management/commands/create_superuser_with_password.py).
-It is licensed under [the MIT license](https://opensource.org/licenses/MIT).
+
+# Authors
+
+**django-createsuperuserwithpassword** is based on code
+by [Adam Charnock](https://github.com/adamcharnock)
+licensed under [the MIT license](https://opensource.org/licenses/MIT)
+that started out at [adamcharnock/swiftwind-heroku](https://github.com/adamcharnock/swiftwind-heroku/commits/master/swiftwind_heroku/management/commands/create_superuser_with_password.py).
+
+[Sebastian Pipping](https://github.com/hartwork) added and fixed a few things, on top.
 
 
 # Development
