@@ -21,11 +21,12 @@ class Command(createsuperuser.Command):
         super(Command, self).add_arguments(parser)
         parser.add_argument = original_add_argument
 
-        parser.add_argument(
+        extra = parser.add_argument_group('non-standard arguments')
+        extra.add_argument(
             '--password', dest='password', default=None, required=True,
             help='Specifies the password for the superuser.',
         )
-        parser.add_argument(
+        extra.add_argument(
             '--preserve', dest='preserve', default=False, action='store_true',
             help='Exit normally if the user already exists.',
         )
