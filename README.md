@@ -37,16 +37,6 @@ python manage.py createsuperuserwithpassword \
 ```
 
 
-# Authors
-
-**django-createsuperuserwithpassword** is based on code
-by [Adam Charnock](https://github.com/adamcharnock)
-licensed under [the MIT license](https://opensource.org/licenses/MIT)
-that started out at [adamcharnock/swiftwind-heroku](https://github.com/adamcharnock/swiftwind-heroku/commits/master/swiftwind_heroku/management/commands/create_superuser_with_password.py).
-
-[Sebastian Pipping](https://github.com/hartwork) added and fixed a few things, on top.
-
-
 # Development
 
 If you want to help fix a bug, an easy way to spin up a development environment is:
@@ -56,3 +46,13 @@ git clone https://github.com/hartwork/django-createsuperuserwithpassword
 cd django-createsuperuserwithpassword
 docker-compose up --build
 ```
+
+
+# Authors
+
+**django-createsuperuserwithpassword** is based on code
+by [Adam Charnock](https://github.com/adamcharnock)
+licensed under [the MIT license](https://opensource.org/licenses/MIT)
+that started out at [adamcharnock/swiftwind-heroku](https://github.com/adamcharnock/swiftwind-heroku/commits/master/swiftwind_heroku/management/commands/create_superuser_with_password.py).
+
+[Sebastian Pipping](https://github.com/hartwork) added and fixed a few things, on top.
