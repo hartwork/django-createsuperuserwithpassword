@@ -1,7 +1,7 @@
 # django-createsuperuserwithpassword
 
 … provides a Django management command
-to create ready-to-login super users during developement.
+to create ready-to-login super users during development.
 
 To use, first
 enable the management command by extending your Django app settings …
