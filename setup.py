@@ -52,7 +52,7 @@ if __name__ == '__main__':
             description=_description,
             long_description=_get_long_description(),
             license='MIT',
-            version='1.0.1',
+            version='2.0.0',
             author='Adam Charnock, Sebastian Pipping',
             author_email='sebastian@pipping.org',
             packages=find_packages(),
